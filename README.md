@@ -1,11 +1,9 @@
 babylon.js中文文档
 =========
 
-这是一个文档翻译项目，内容来自[babylon.js官方文档](https://doc.babylonjs.com/)。
+这是一个文档翻译项目，原英文内容来自[babylon.js官方文档](https://doc.babylonjs.com/)。
 
-目前网上的babylon.js中文文档，存在版本太老、更新不及时、内容不全等问题。
-
-本项目通过翻译babylon.js的指南性文档，意在：
+目前网上的babylon.js中文文档，存在版本太老、更新不及时、内容不全等问题。本项目通过翻译babylon.js的指南性文档，意在：
 
 * 帮助不熟悉babylon.js的同学快速上手
 * 系统性了解babylon.js的API封装方式，获得启发或指导
@@ -18,11 +16,12 @@ babylon.js中文文档
 
 *本项目正在开发中，所以会有部分文档暂未翻译，敬请谅解*
 
-* 在git仓库页面直接[阅读](./babylon.js/README.md)
-* Clone本项目，在本地阅读
-* 借由[docsify](https://docsify.js.org/)的强大能力，现在可以直接以[网页形式](https://shawn0326.github.io/babylon-doc-cn/)直接展示整个文档。
+* 借由[docsify](https://docsify.js.org/)的强大能力 :thumbsup: ，本文档可以直接[在线阅读](https://shawn0326.github.io/babylon-doc-cn/)。
 
 ![](./screenshot.png)
+
+* 在git仓库页面直接[阅读](./docs/README.md)
+* Clone本项目，在本地阅读
 ### 一些简单的开发规范
 
 * 暂时只翻译 `Getting Started`, `Diving Deeper`, `Advanced Topics`, `Tools and Resources`, `Guided Learning`, `Extensions` 这几部分，API文档内容过多暂不翻译

@@ -33,4 +33,3 @@ const mesh = BABYLON.Mesh.Create<MeshType>(name, required_param1, required_param
 ````
 
 当以上面这种方式调用时，`scene`参数是必须的。这种方式已经在逐步废弃，但你仍可以在一些示例中看到这种写法。
-

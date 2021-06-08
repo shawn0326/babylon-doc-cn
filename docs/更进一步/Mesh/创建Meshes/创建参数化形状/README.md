@@ -12,4 +12,17 @@ const mesh = BABYLON.MeshBuilder.Create<MeshType>(name, options, scene);
 const mesh = BABYLON.MeshBuilder.Extrude<MeshType>(name, options, scene);
 ````
 
-// TODO
+其中option对象的属性是根据网格类型变化的。scene参数是可选的，默认为当前场景。option对象属性中有一个或多个Vector3数据来定义路径或轮廓，这些一般都是必须设置的。
+
+所有这些参数化形状，除了CreateLathe，CreatePolygon和ExtrudePolygon，options中都有一个*instance*属性，如果创建的时候*updatable*设置为true，这个属性可以用来更新形状。但你只能更改数据数组中的内容，而不能更改数组的长度。
+
+在可能的情况下，playgrounds将会演示两个例子，第一个创建mesh，第二个使用instance选项对mesh进行更新。注释掉后者可以查看mesh原始的形状。
+
+仍然可以通过 “*Mesh”方法创建这些形状，形如：
+
+````javascript
+const mesh = BABYLON.Mesh.Create<MeshType>(name, required_param1, required_param2, ..., scene, optional_parameter1, ........);
+const mesh = BABYLON.Mesh.Extrude<MeshType>(name, required_param1, required_param2, ..., scene, optional_parameter1, ........);
+````
+
+当使用可选参数的时候，scene参数是必须的。你仍然会在playgrounds中找到这种代码。

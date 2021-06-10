@@ -1,0 +1,47 @@
+创建一个Box
+===
+
+### Box网格体
+
+Box的原点在中心点，并且指定了width（x），height（y）和depth（z）。
+
+### MeshBuilder
+
+使用：
+
+````javascript
+const box = BABYLON.MeshBuilder.CreateBox("box", options, scene); //scene is optional and defaults to the current scene
+````
+
+|options属性|值|默认值|
+|--|--|--|
+|size|(number)各方向的尺寸|1|
+|height|(number)高度，覆盖size属性|size|
+|width|(number)宽度，覆盖size属性|size|
+|depth|(number)深度，覆盖size属性|size|
+|faceColors|(Color4[])6个Color4组成的数组，每个代表一个面的颜色|每个面都为Color4(1, 1, 1, 1)|
+|faceUV|(Vector4[])6个Vector4组成的数组，每个代表一个面的UV|每个面都为Vector4(0, 0, 1, 1)|
+|wrap|(boolean)（Babylon.js 4.0或以上）当为true时所有的垂直面将环绕显示图片|false|
+|topBaseAt|(number)（Babylon.js 4.0或以上）侧面上边缘的UV|1|
+|bottomBaseAt|(number)（Babylon.js 4.0或以上）侧面下边缘的UV|0|
+|updatable|(boolean)如果为true网格体可以被更新|false|
+|sideOrientation|(number)面朝向|DEFAULTSIDE|
+|frontUVs|(Vector4)只有当sideOrientation设置为BABYLON.Mesh.DOUBLESIDE时生效|Vector4(0, 0, 1, 1)|
+|backUVs|(Vector4)只有当sideOrientation设置为BABYLON.Mesh.DOUBLESIDE时生效|Vector4(0, 0, 1, 1)|
+
+### 例子
+
+长方体：[创建一个长方体](https://playground.babylonjs.com/#6XIT28#4)
+
+面上标有数字，面0在z轴的正方向：[面上标有数字](https://playground.babylonjs.com/#6XIT28#5)
+
+### Mesh
+
+使用：
+
+````javascript
+const box = BABYLON.Mesh.CreateBox("box", size, scene);
+const box = BABYLON.Mesh.CreateBox("box", size, scene, updatable, sideOrientation); //optional parameters after scene
+````
+
+该方法只支持立方体，长方体需要使用缩放来实现。

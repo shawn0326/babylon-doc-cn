@@ -44,4 +44,10 @@ BABYLON.Mesh.FLIP_N_ROTATE_TILE,
 BABYLON.Mesh.FLIP_N_ROTATE_ROW
 ````
 
+TILE结尾的枚举值表示每一个tile格子都被翻转或者旋转。
+
+ROW结尾的枚举表示每隔一整行tile被翻转或者旋转。
+
+当平面的长度和宽度不恰好是tile尺寸的整数倍时，那么tile平铺的时候会有被切掉的情况。这时你可以规定被切掉的部分出现在平面的哪个位置，可以在平面的一边，也可以同时出现在两边。你可以通过设置选项中的*alignVertical*或者*alignHorizontal*属性，来实现上述设置。例如，如果设置*alignHorizontal*
+
 // TODO

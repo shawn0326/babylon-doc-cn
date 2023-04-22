@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta charset="UTF-8">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/themes/vue.css">
+  <!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/sidebar.min.css" /> -->
+  <!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/sidebar-folder.min.css" /> -->
 </head>
 <body>
   <div id="app"></div>
@@ -15,10 +17,16 @@
       loadSidebar: true,
       themeColor: '#9B86FF',
       auto2top: true,
-      repo: 'https://github.com/shawn0326/babylon-doc-cn'
-      // subMaxLevel: 2
+      repo: 'https://github.com/shawn0326/babylon-doc-cn',
+      alias: {
+        '/.*/_sidebar.md': '/_sidebar.md'
+      },
+      sidebarDisplayLevel: 1,
+      loadFooter: true
     }
   </script>
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@alertbox/docsify-footer/dist/docsify-footer.min.js"></script>
 </body>
 </html>

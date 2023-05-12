@@ -122,3 +122,6 @@
     * [工具和资源](/工具和资源/)
     * [学习指导](/学习指导/)
     * [扩展](/扩展/)
+    * [在Web项目中使用Babylon.js](/setup/)
+        * [支持](/setup/support/)
+            * [WebGPU](/setup/support/webGPU/)

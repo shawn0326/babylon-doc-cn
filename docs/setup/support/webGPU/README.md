@@ -19,7 +19,7 @@ WebGPU 带来的一些特性是：
 
 ## 进度
 
-请参阅[专门的进度页面](https://doc.babylonjs.com/setup/support/webGPU/webGPUStatus)。
+请参阅[专门的进度页面](./webGPUStatus.md)。
 
 您还可以关注我们在 [GitHub 关于该问题的进展](https://github.com/BabylonJS/Babylon.js/issues/6443)。
 

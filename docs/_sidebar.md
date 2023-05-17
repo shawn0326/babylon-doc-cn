@@ -49,7 +49,10 @@
         * 相机
         * 控制器
         * 使用和开发Babylon.js
-        * 环境
+        * [环境](/更进一步/environment/)
+            * [环境介绍](/更进一步/environment/environment_introduction)
+            * [天空盒](/更进一步/environment/skybox)
+            * [背景材质](/更进一步/environment/backgroundMaterial)
         * 事件
         * GUI
         * 用户输入

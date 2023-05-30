@@ -61,7 +61,8 @@
              * [阴影](/更进一步/Lights/阴影)
         * [材质](/更进一步/Materials/)
             * 使用材质
-            * 着色器
+            * [着色器](/更进一步/Materials/shaders/)
+                * [计算着色器](/更进一步/Materials/shaders/computeShader)
             * [节点材质](/更进一步/Materials/节点材质/)
                 * [节点材质](/更进一步/Materials/节点材质/节点材质)
                 * [节点材质和PBR](/更进一步/Materials/节点材质/节点材质和PBR)

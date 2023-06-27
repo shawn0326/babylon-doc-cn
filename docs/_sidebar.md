@@ -54,7 +54,8 @@
             * [天空盒](/更进一步/environment/skybox)
             * [背景材质](/更进一步/environment/backgroundMaterial)
         * 事件
-        * GUI
+        * [GUI](/更进一步/gui/)
+            * [Babylon GUI](/更进一步/gui/gui)
         * 用户输入
         * 导入资源
         * [灯光](/更进一步/Lights/)

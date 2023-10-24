@@ -59,9 +59,12 @@
         * 用户输入
         * 导入资源
         * [灯光](/更进一步/Lights/)
-             * [阴影](/更进一步/Lights/阴影)
+            * [阴影](/更进一步/Lights/阴影)
         * [材质](/更进一步/Materials/)
-            * 使用材质
+            * [使用材质](/更进一步/Materials/using/)
+                * [材质简介](/更进一步/Materials/using/materials_introduction)
+                * [PBR介绍](/更进一步/Materials/using/introToPBR)
+                * [HDR环境图](/更进一步/Materials/using/HDREnvironment)
             * [着色器](/更进一步/Materials/shaders/)
                 * [计算着色器](/更进一步/Materials/shaders/computeShader)
             * [节点材质](/更进一步/Materials/节点材质/)

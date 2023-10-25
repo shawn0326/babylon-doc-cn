@@ -251,4 +251,205 @@ pbr.subSurface.maximumThickness = 10;
 
 ## 半透明性
 
+折射可以很好地表示穿过啤酒或葡萄酒等低密度介质的光。但是，如果您的材料像牛奶一样密度更大，光线会扩散到整个材料中，该怎么办？
+
+![](https://doc.babylonjs.com/img/extensions/PBRSubSurface.png)
+
+在这种情况下，您可以依靠材质的translucency属性。
+
+[PBR的半透明](https://playground.babylonjs.com/#FEEK7G#37)
+
+````javascript
+const pbr = new BABYLON.PBRMaterial("pbr", scene);
+sphere.material = pbr;
+
+pbr.metallic = 0;
+pbr.roughness = 0;
+
+pbr.subSurface.isTranslucencyEnabled = true;
+pbr.subSurface.translucencyIntensity = 0.8;
+````
+
+与折射共享一些设置（这实际上是有意义的，因为我们谈论的是相同的材质），您可以依靠色调颜色来定义表面以下材质的颜色：
+
+[PBR 中的色调颜色](https://playground.babylonjs.com/#FEEK7G#27)
+
+````javascript
+const pbr = new BABYLON.PBRMaterial("pbr", scene);
+sphere.material = pbr;
+
+pbr.metallic = 0;
+pbr.roughness = 0;
+
+pbr.subSurface.isTranslucencyEnabled = true;
+pbr.subSurface.tintColor = BABYLON.Color3.Teal();
+````
+
+根据先前定义的两个值，设置将是相同的：
+
+* tintColor：定义色调的颜色。
+* tintColorAtDistance：定义表面以下的距离应为定义的颜色（通过啤酒朗伯定律模拟吸收）。
+
+它还完全尊重先前定义的厚度配置：每个像素的实际厚度将为=minimumThickness+thicknessTexture.r*maximumThickness。
+
+## 散射
+
 TODO
+
+## 遮罩
+
+TODO
+
+## 清漆（clearcoat）
+
+透明涂层是一种模拟汽车油漆等涂层的方法。它通常是一层透明的油漆，可用于覆盖彩色涂层。
+
+![](https://doc.babylonjs.com/img/extensions/PBRClearCoat.png)
+
+透明涂层是材料的上表面。
+
+[PBR 中的透明涂层](https://playground.babylonjs.com/#FEEK7G#36)
+
+````javascript
+const pbr = new BABYLON.PBRMaterial("pbr", scene);
+pbr.metallic = 0.0;
+pbr.roughness = 1.0;
+
+pbr.clearCoat.isEnabled = true;
+pbr.clearCoat.intensity = 0.5;
+````
+
+由于透明涂层是与外部介质的最终交互层，因此它应用于凹凸贴图的顶部，这对于模拟由凹凸贴图表示的小几何图形上方的涂层来说是令人惊奇的：
+
+[PBR 中的透明涂层和凹凸贴图](https://playground.babylonjs.com/#FEEK7G#28)
+
+````javascript
+const pbr = new BABYLON.PBRMaterial("pbr", scene);
+// Ensures irradiance is computed per fragment to make the
+// Bump visible
+pbr.forceIrradianceInFragment = true;
+pbr.bumpTexture = new BABYLON.Texture("textures/floor_bump.png", scene);
+pbr.metallic = 0.0;
+pbr.roughness = 1.0;
+
+pbr.clearCoat.isEnabled = true;
+````
+
+这是不言而喻的，有时甚至涂层作为一些缺陷可以具有与凹凸贴图不同的形状：
+
+[PBR 中的透明涂层、缺陷和凹凸贴图](https://playground.babylonjs.com/#FEEK7G#30)
+
+````javascript
+const pbr = new BABYLON.PBRMaterial("pbr", scene);
+// Ensures irradiance is computed per fragment to make the
+// Bump visible
+pbr.forceIrradianceInFragment = true;
+pbr.bumpTexture = new BABYLON.Texture("textures/floor_bump.png", scene);
+pbr.metallic = 0.0;
+pbr.roughness = 1.0;
+
+pbr.clearCoat.isEnabled = true;
+const coatBump = new BABYLON.Texture("textures/waterbump.png", scene);
+pbr.clearCoat.bumpTexture = coatBump;
+````
+
+这一切都很棒，但是不同的颜色怎么样（所有涂层都不透明，想想糖果周围的涂层）。您可以通过四个属性控制透明涂层的色调：
+
+* isTintEnabled：启用或禁用色调。
+* tintColor：定义色调的主要颜色。
+* tintColorAtDistance：定义在表面以下的距离处颜色应该是定义的颜色。
+* tintThickness：定义涂层的厚度。
+
+很直观地可以理解，涂层越厚，涂层下表面的颜色就越深。我们仔细遵循比尔朗伯定律，以便根据所选颜色、“距离”和厚度推断出最终颜色。
+
+[PBR 中的透明涂层厚度](https://playground.babylonjs.com/#FEEK7G#7)
+
+````javascript
+pbr.clearCoat.isTintEnabled = true;
+pbr.clearCoat.tintColor = BABYLON.Color3.Teal();
+pbr.clearCoat.tintColorAtDistance = 1;
+pbr.clearCoat.tintThickness = 1.5;
+````
+
+默认情况下，透明涂层是完全有光泽的。然而，您可以为模拟涂层（例如使用过的涂层）定义特殊的粗糙度值：
+
+[PBR 中的透明涂层粗糙度](https://playground.babylonjs.com/#FEEK7G#31)
+
+````javascript
+pbr.clearCoat.roughness = 0.15;
+````
+
+最后，您可以调整涂层的折射率来更改应用于环境的菲涅耳效果。默认配置代表聚氨酯层：
+
+[PBR 中的透明涂层折射率](https://playground.babylonjs.com/#FEEK7G#50)
+
+````javascript
+pbr.clearCoat.isTintEnabled = true;
+pbr.clearCoat.indexOfRefraction = 2;
+````
+
+为了方便起见，这里的所有配置也可以存储在纹理中：
+
+* texture：定义透明涂层的基本数据。r是强度因子，g是粗糙度因子。
+* bumpTexture：定义透明涂层特定的凹凸纹理。
+* tintColorAtDistance：定义在表面以下的距离处颜色应该是定义的颜色。
+* tintTexture：定义纹理中的清晰色调值。rgb 是色调，a 是厚度系数。
+
+## 彩虹色
+
+TODO
+
+## 各向异性
+
+TODO
+
+## 光泽（Sheen）
+
+有些材料的镜面波瓣具有完全不同的形状。默认情况下，在 PBR 中，材质的镜面波瓣不会适合定义我们在缎子等织物材料上看到的宽镜面波瓣。这是我们在材质中引入光泽的主要原因，4.0版本后，您可以使用依赖于PBR的织物材质。
+
+在PBR材质中，可以使用以下代码启用sheen：
+
+[PBR中的Sheen](https://playground.babylonjs.com/#FEEK7G#33)
+
+````javascript
+const pbr = new BABYLON.PBRMaterial("pbr", scene);
+pbr.metallic = 1.0;
+pbr.roughness = 0.0;
+
+pbr.sheen.isEnabled = true;
+pbr.sheen.intensity = 0.5;
+````
+
+注意，Sheen效果仅适用于粗糙的介电材料（金属 = 0）。实际上，如果粗糙度很小，则镜面反射波瓣的形状会很薄，以至于您不会看到与无光泽镜面反射波瓣有任何差异。
+
+为了帮助处理多色材质（例如特殊类型的缎子），您可以使用以下代码控制光泽的色调：
+
+````javascript
+const pbr = new BABYLON.PBRMaterial("pbr", scene);
+pbr.metallic = 0.0;
+pbr.roughness = 0.5;
+
+pbr.sheen.isEnabled = true;
+pbr.sheen.color = BABYLON.Color3.Red();
+````
+
+像往常一样，您可以使用专用纹理来控制所有这些参数。rgb 是色调，a 是强度因子。
+
+````javascript
+const pbr = new BABYLON.PBRMaterial("pbr", scene);
+pbr.metallic = 0.0;
+pbr.roughness = 0.5;
+
+pbr.sheen.isEnabled = true;
+pbr.sheen.texture = texture;
+````
+
+## 法线贴图/视差
+
+TODO
+
+## 光照贴图
+
+光照贴图的使用方式与标准材质中的使用方式相同，即通过影响属性的纹理来实现lightmapTexture。通过将专用控制标志useLightmapAsShadowmap切换为true，也可以将其用作ShadowMap。
+
+TODO ...

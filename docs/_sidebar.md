@@ -65,6 +65,7 @@
                 * [材质简介](/更进一步/Materials/using/materials_introduction)
                 * [PBR介绍](/更进一步/Materials/using/introToPBR)
                 * [HDR环境图](/更进一步/Materials/using/HDREnvironment)
+                * [PBR进阶](/更进一步/Materials/using/masterPBR)
             * [着色器](/更进一步/Materials/shaders/)
                 * [计算着色器](/更进一步/Materials/shaders/computeShader)
             * [节点材质](/更进一步/Materials/节点材质/)

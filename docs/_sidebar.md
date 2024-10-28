@@ -48,7 +48,7 @@
         * 行为
         * 相机
         * 控制器
-        * 使用和开发Babylon.js
+        * [群导航系统](/更进一步/crowdNavigation/)
         * [环境](/更进一步/environment/)
             * [环境介绍](/更进一步/environment/environment_introduction)
             * [天空盒](/更进一步/environment/skybox)

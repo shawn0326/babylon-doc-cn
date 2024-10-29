@@ -49,6 +49,9 @@
         * 相机
         * 控制器
         * [群导航系统](/更进一步/crowdNavigation/)
+            * [创建导航网格](/更进一步/crowdNavigation/createNavMesh)
+            * [群代理](/更进一步/crowdNavigation/crowdAgents)
+            * [障碍物](/更进一步/crowdNavigation/obstacles)
         * [环境](/更进一步/environment/)
             * [环境介绍](/更进一步/environment/environment_introduction)
             * [天空盒](/更进一步/environment/skybox)

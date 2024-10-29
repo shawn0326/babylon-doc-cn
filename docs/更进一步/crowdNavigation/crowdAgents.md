@@ -53,4 +53,41 @@ separationWeight - 系统将多努力地尝试分离代理。值为 0 表示它�
 crowd.updateAgentParameters(agentIndex, { maxSpeed: 10, maxAcceleration: 200 });
 ```
 
-TODO
+## 传送
+
+你可以使用以下调用将代理传送到任何位置：
+
+```javascript
+crowd.agentTeleport(agentIndex, navigationPlugin.getClosestPoint(destinationPoint));
+```
+
+请注意，传送时导航状态会被重置。你需要调用 agentGoto 来选择一个新的目的地。
+
+## 代理方向和下一个路径目标
+
+Recastjs 人群系统不处理代理方向。但速度是可用的，可以根据速度方向调整几何体的方向。为此，你需要使用 Math.atan2, 如下例所示。请注意速度向量的长度。如果它不够大，可能会遇到抖动问题。
+
+```javascript
+let velocity = crowd.getAgentVelocity(agentIndex);
+if (velocity.length() > 0.2) {
+  const desiredRotation = Math.atan2(velocity.x, velocity.z);
+  // interpolate the rotation on Y to get a smoother orientation change
+  ag.mesh.rotation.y = ag.mesh.rotation.y + (desiredRotation - ag.mesh.rotation.y) * 0.05;
+}
+```
+
+[代理方向和下一个路径目标](https://playground.babylonjs.com/#6AE0RP)
+
+代理的立方体根据速度进行定向，一个灰色的小方块放置在下一个路径拐角的位置。
+
+## 代理到达目标观察者
+
+当代理到达目的地（即在目的地半径内）时，会自动触发一个观察对象。默认情况下，半径是代理的半径，但可以使用 IAgentParameters 对象中的 reachRadius 数字属性进行更改。如果人群中有太多代理试图到达同一目的地，可能会发生瓶颈，少数代理会到达目的地。请确保正确设置这些值。要添加一个可观察对象，只需添加你的函数：
+
+```javascript
+const crowd = navigationPlugin.createCrowd(10, 0.1, scene);
+...
+crowd.onReachTargetObservable.add((agentInfos) => {
+    console.log("agent reach destination: ", agentInfos.agentIndex);
+});
+```
